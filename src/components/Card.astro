@@ -1,0 +1,25 @@
+---
+import CardDefault from "./CardDefault.astro";
+import CardFeatured from "./CardFeatured.astro";
+
+const { url, featured, cover, path, title, description } = Astro.props;
+---
+
+{
+  featured ? (
+    <CardFeatured
+      url={url}
+      cover={cover}
+      title={title}
+      description={description}
+    />
+  ) : (
+    <CardDefault
+      url={url}
+      path={path}
+      cover={cover}
+      title={title}
+      description={description}
+    />
+  )
+}

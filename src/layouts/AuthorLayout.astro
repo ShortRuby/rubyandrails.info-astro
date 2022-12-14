@@ -1,0 +1,70 @@
+---
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout
+  title={`${frontmatter.title} | AI Tools`}
+  seoDescription={frontmatter.description}
+  seoKeywords={`${frontmatter.title}, ${frontmatter.path}, `}
+>
+  <div class="mb-16 rounded-3xl p-12 sm:p-16 xl:p-20 bg-white">
+    <a
+      href="/authors"
+      class="text-red-500 hover:opacity-70 transition mb-8 inline-flex gap-2 items-center"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+      </svg>
+      All Authors
+    </a>
+
+    <div></div>
+    <h1
+      class="mb-6 font-medium text-5xl md:text-6xl capitalize max-w-5xl lg:text-7xl"
+    >
+      {frontmatter.name}
+    </h1>
+
+    <p>
+      <slot />
+    </p>
+    <div class="flex flex-col-reverse lg:flex-row gap-8 sm:gap-12 lg:gap-28">
+      <div class="max-w-4xl">
+        <a
+          target="_blank"
+          href={frontmatter.site}
+          class="group items-center gap-4 hover:bg-slate-900 text-white bg-red-500 duration-200 transition rounded-xl shadow-xl shadow-red-600/20 hover:shadow-2xl hover:shadow-slate-900/30 w-full justify-center px-8 sm:w-auto lg:px-20 py-4 md:py-6 text-3xl font-medium inline-flex"
+        >
+          Subscribe
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            class="h-6 w-6 group-hover:rotate-45 transition duration-200"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

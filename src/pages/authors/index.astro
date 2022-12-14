@@ -1,0 +1,14 @@
+---
+import Layout from "./../../layouts/AuthorsLayout.astro";
+import Card from "../../components/CardAuthor.astro";
+
+const allData = await Astro.glob("./*.md");
+---
+
+<Layout pageTitle="Ruby & Ruby on Rails" seoDescription="" seoKeywords="">
+  {
+    allData.map((i) => (
+      <Card name={i.frontmatter.name} path={i.frontmatter.path} url={i.url} />
+    ))
+  }
+</Layout>

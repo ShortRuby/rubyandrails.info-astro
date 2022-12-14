@@ -1,0 +1,33 @@
+---
+const { url, cover, free } = Astro.props;
+---
+
+<div class="group">
+  <a
+    href={url}
+    class="relative duration-300 text-white aspect-[1/1.6] transition rounded-md"
+  >
+    <div
+      class="relative overflow-hidden mb-2 shadow-xl rounded-sm transition duration-300"
+    >
+      {
+        free && (
+          <span class="bg-lime-600/90 backdrop-blur-md uppercase font-bold tracking-wider text-sm px-4 py-1 absolute top-2 right-0 group-hover:-translate-y-0 duration-300 transition z-50">
+            Free
+          </span>
+        )
+      }
+      <div
+        class="rounded-full group-hover:opacity-70 duration-300 opacity-0 transition absolute blur-3xl h-40 w-40 bg-gradient-to-t from-white to-white/20"
+      >
+      </div>
+      <img
+        src="/books/overlay.png"
+        alt=""
+        srcset="/books/overlay@2x.png 2x"
+        class="absolute mix-blend-multiply"
+      />
+      <img src=`/books/${cover}.jpg` alt="" class="object-cover" />
+    </div>
+  </a>
+</div>

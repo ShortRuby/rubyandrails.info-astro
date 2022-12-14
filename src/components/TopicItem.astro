@@ -1,0 +1,16 @@
+---
+const { title, link, img } = Astro.props;
+---
+
+<a
+  href=`/books/${link}`
+  class="bg-white group hover:-translate-y-2 transition duration-300 p-8 rounded-xl border border-indigo-100"
+>
+  <img
+    src=`/topics/${img}.png`
+    alt=""
+    srcset=`/topics/${img}@2x.png 2x`
+    class="mb-4"
+  />
+  <span class="group-hover:text-red-500">{title}</span>
+</a>

@@ -1,0 +1,62 @@
+---
+import NavItem from "./NavItem.astro";
+---
+
+<nav class="pt-10 pb-24 flex flex-col gap-4">
+  <div class="flex flex-col items-start gap-4">
+    <div
+      class="flex flex-col md:flex-row justify-between w-full sm:items-center"
+    >
+      <div class="flex gap-y-1 gap-x-10 flex-wrap">
+        <a
+          href="/"
+          class="inline-flex transition gap-1 items-center font-black text-2xl mr-16 text-slate-800"
+        >
+          Ruby. <br /> Ruby on Rails
+        </a>
+        <NavItem link="books" />
+
+        <NavItem link="podcasts" />
+
+        <NavItem link="newsletters" />
+
+        <!-- <NavItem link="courses" /> -->
+
+        <!-- <NavItem link="screencasts" /> -->
+      </div>
+
+      <div
+        class="flex text-xl justify-between lg:flex-row items-center gap-4 lg:gap-12"
+      >
+        <div class="flex items-center gap-4">
+          <a
+            href="https://twitter.com/nleonid"
+            target="_blank"
+            class="hover:opacity-70"
+          >
+            <svg
+              width="24"
+              height="20"
+              viewBox="0 0 24 20"
+              class="text-sky-500"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_241_54)">
+                <path
+                  d="M21.478 4.97301C21.4925 5.18341 21.4925 5.39382 21.4925 5.60617C21.4925 12.0764 16.5763 19.5386 7.58699 19.5386V19.5347C4.93151 19.5386 2.33119 18.7765 0.0957031 17.3395C0.481832 17.3861 0.869897 17.4093 1.25893 17.4103C3.45957 17.4122 5.59732 16.6724 7.32861 15.3101C5.23732 15.2704 3.40344 13.9042 2.7628 11.9097C3.49538 12.0512 4.25022 12.0221 4.96925 11.8253C2.68925 11.3638 1.04893 9.35665 1.04893 7.02569C1.04893 7.00436 1.04893 6.98399 1.04893 6.96363C1.72828 7.34275 2.48893 7.55316 3.26699 7.57643C1.11957 6.13849 0.457639 3.27617 1.75441 1.03829C4.2357 4.09744 7.89667 5.95717 11.8267 6.154C11.4328 4.45329 11.9709 2.67113 13.2405 1.47559C15.2089 -0.37832 18.3047 -0.283297 20.1551 1.68794C21.2496 1.47171 22.2986 1.06932 23.2586 0.499185C22.8938 1.63267 22.1302 2.5955 21.1102 3.20733C22.0789 3.09291 23.0254 2.83306 23.9167 2.43648C23.2605 3.42162 22.4341 4.27973 21.478 4.97301Z"
+                  fill="currentColor"></path>
+              </g>
+              <defs>
+                <clipPath id="clip0_241_54">
+                  <rect width="24" height="19.7802" fill="white"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <a href="/about" class="hover:opacity-70">About</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

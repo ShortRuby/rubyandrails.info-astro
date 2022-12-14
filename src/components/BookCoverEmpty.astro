@@ -1,0 +1,43 @@
+---
+const { url, title, free, authors, onbookpage = false } = Astro.props;
+---
+
+<div class="group relative">
+  <a
+    href={url}
+    class="flex flex-col mb-4 relative overflow-hidden group hover:bg-blue-700 duration-300 aspect-[1/1.2] bg-blue-800 p-8 text-white transition text-2xl leading-relaxed rounded-sm"
+  >
+    {
+      free && (
+        <span class="bg-lime-600/90 backdrop-blur-md uppercase font-bold tracking-wider text-sm px-4 py-1 absolute top-2 right-0 transition z-50">
+          Free
+        </span>
+      )
+    }
+    <div
+      class="rounded-full group-hover:opacity-70 duration-300 opacity-0 transition absolute blur-3xl h-40 w-40 bg-gradient-to-t from-white to-white/20"
+    >
+    </div>
+    <img
+      src="/books/overlay.png"
+      alt=""
+      srcset="/books/overlay@2x.png 2x"
+      class="absolute inset-0 mix-blend-multiply"
+    />
+
+    <span class="opacity-70 leading-tight inline-block text-lg mb-8 capitalize">
+      {authors.join(", ")}
+    </span>
+    {
+      onbookpage ? (
+        <h3 class="tracking-tight font-medium text-xl md:text-2xl 2xl:text-6xl mb-2">
+          {title}
+        </h3>
+      ) : (
+        <h3 class="tracking-tight font-medium text-xl md:text-2xl 2xl:text-2xl mb-2">
+          {title}
+        </h3>
+      )
+    }
+  </a>
+</div>

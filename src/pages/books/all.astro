@@ -1,0 +1,37 @@
+---
+import Layout from "./../../layouts/BaseLayout.astro";
+
+import Title from "../../components/Title.astro";
+import Card from "../../components/CardBook.astro";
+import List from "../../components/ListTitleBooks.astro";
+import BooksByTopics from "../../components/BooksByTopics.astro";
+
+const allData = await Astro.glob("./*.md");
+---
+
+<Layout
+  title="All Books about Ruby and Ruby on Rails"
+  pageTitle="Ruby & Ruby on Rails"
+  seoDescription="AI Tools can help you with marketing, advertising, search, and more. Limitations? There are none!"
+  seoKeywords="ai tools, ai search, ai marketing, ai translation, ai shopify"
+>
+  <Title category="All Books" />
+
+  <BooksByTopics />
+
+  <List title="Books">
+    {
+      allData.map((i) => (
+        <Card
+          title={i.frontmatter.title}
+          path={i.frontmatter.path}
+          authors={i.frontmatter.authors}
+          cover={i.frontmatter.cover}
+          free={i.frontmatter.free}
+          url={i.url}
+          description={i.frontmatter.description}
+        />
+      ))
+    }
+  </List>
+</Layout>

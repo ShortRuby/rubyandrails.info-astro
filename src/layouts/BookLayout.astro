@@ -1,0 +1,90 @@
+---
+import Layout from "./Layout.astro";
+import Tag from "../components/Tag.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout
+  title={`${frontmatter.title} | AI Tools`}
+  seoDescription={frontmatter.description}
+  seoKeywords={`${frontmatter.title}, ${frontmatter.path}, AI Tools, ${frontmatter.tags}`}
+>
+  <div class="text-white flex gap-10 pt-10 pb-20">
+    <div class="lg:w-1/4">
+      <a
+        onclick="history.back()"
+        class="hover:text-violet-300 transition group sticky top-5 z-40 pl-3 pr-6 w-fit py-2 rounded-full hover:bg-purple-500/30 bg-purple-500/20 flex gap-2 items-center text-violet-400 cursor-pointer"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          class="w-8 h-8 duration-300 ease-out group-hover:-translate-x-2"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-4.28 9.22a.75.75 0 000 1.06l3 3a.75.75 0 101.06-1.06l-1.72-1.72h5.69a.75.75 0 000-1.5h-5.69l1.72-1.72a.75.75 0 00-1.06-1.06l-3 3z"
+            clip-rule="evenodd"></path>
+        </svg>
+
+        Back
+      </a>
+    </div>
+    <div class="lg:w-3/4">
+      <div class="mb-12">
+        <h1 class="font-black mb-6 text-4xl text-white capitalize lg:text-6xl">
+          {frontmatter.title}
+        </h1>
+
+        <div class="flex flex-wrap gap-2">
+          {
+            frontmatter.tags.map((tag) => (
+              <Tag tag={tag} path={`/${frontmatter.path}/${tag}`} />
+            ))
+          }
+        </div>
+      </div>
+
+      {
+        frontmatter.video ? (
+          <iframe
+            class="aspect-video w-full mb-10 rounded-xl"
+            src={`https://www.youtube.com/embed/${frontmatter.video}`}
+            title={frontmatter.title}
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        ) : (
+          <picture>
+            <source
+              src={`/${frontmatter.path}/covers/${frontmatter.cover}.webp`}
+              alt={frontmatter.title}
+            />
+            <img
+              src={`/${frontmatter.path}/covers/${frontmatter.cover}.webp`}
+              class="rounded-xl mb-10"
+              alt={frontmatter.title}
+            />
+          </picture>
+        )
+      }
+
+      <div class="flex mb-10 flex-col lg:flex-row gap-6 lg:gap-10">
+        <p class="text-3xl lg:w-2/3 leading-relaxed max-w-2xl">
+          {frontmatter.description}
+        </p>
+        <div class="lg:w-1/3 text-right self-start">
+          <a
+            target="_blank"
+            href={frontmatter.link}
+            class="inline-block text-2xl bg-violet-500 hover:bg-violet-600 transition rounded-lg px-10 py-4"
+            >Open Site</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

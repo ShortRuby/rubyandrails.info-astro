@@ -1,0 +1,34 @@
+---
+import BookCoverEmpty from "./BookCoverEmpty.astro";
+import BookCoverImage from "./BookCoverImage.astro";
+const { url, authors, cover, title, free } = Astro.props;
+---
+
+{
+	cover ? (
+		<div class="group">
+			<BookCoverImage title={title} url={url} free={free} cover={cover} />
+			<span class="opacity-70 leading-tight inline-block text-base mb-2 capitalize">
+				{authors.join(", ")}
+			</span>
+			<a href={url}>
+				<h3 class="tracking-tight group-hover:text-red-500 font-medium mb-2">
+					{title}
+				</h3>
+			</a>
+		</div>
+	) : (
+		<div class="group">
+			<BookCoverEmpty title={title} url={url} authors={authors} free={free} />
+
+			<span class="opacity-70 leading-tight inline-block text-base mb-2 capitalize">
+				{authors.join(", ")}
+			</span>
+			<a href={url}>
+				<h3 class="tracking-tight group-hover:text-red-500 font-medium mb-2">
+					{title}
+				</h3>
+			</a>
+		</div>
+	)
+}

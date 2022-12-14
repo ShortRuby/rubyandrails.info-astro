@@ -1,0 +1,54 @@
+---
+const {
+	url,
+	class: className,
+	authors,
+	link,
+	cover,
+	title,
+	description,
+} = Astro.props;
+---
+
+<div
+	class=`${className} p-8 bg-white/80 flex flex-col justify-between border border-indigo-100/80 duration-300 hover:-translate-y-4  overflow-hidden transition rounded-xl`
+>
+	<div>
+		<span class="opacity-70 leading-tight inline-block text-lg mb-2 capitalize">
+			{authors.join(", ")}
+		</span>
+		<a
+			href={url}
+			class="tracking-tight text-2xl xl:text-4xl hover:opacity-80 transition hover:text-red-500"
+		>
+			<h3 class="hover:opacity-80 mb-4">
+				{title}
+			</h3>
+		</a>
+		<p class="mb-6 opacity-70">{description}</p>
+	</div>
+	<div class="flex gap-8 items-center">
+		<a
+			href={link}
+			target="_blank"
+			class="group items-center gap-4 hover:bg-slate-900 text-white bg-red-500 duration-200 transition rounded-xl shadow-xl shadow-red-600/20 hover:shadow-2xl hover:shadow-slate-900/30 w-full justify-center px-6 sm:w-auto lg:px-12 py-4 md:py-4 text-2xl font-medium inline-flex"
+		>
+			Subscribe
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				class="h-6 w-6 group-hover:rotate-45 transition duration-200"
+				viewBox="0 0 24 24"
+				stroke-width="2.5"
+				stroke="currentColor"
+				aria-hidden="true"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+			</svg>
+		</a>
+		<a href={url} class="opacity-80 hover:text-red-500">Details</a>
+	</div>
+</div>

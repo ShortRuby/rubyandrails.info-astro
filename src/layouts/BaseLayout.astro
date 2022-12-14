@@ -1,0 +1,28 @@
+---
+import Navigation from "../components/Navigation.astro";
+const { title, seoDescription, seoKeywords } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={seoDescription} />
+		<meta name="keywords" content={seoKeywords} />
+		<title>{title}</title>
+		<script async src="https://tally.so/widgets/embed.js"></script>
+		<script defer src="/va/script.js"></script>
+	</head>
+	<body class="text-xl px-5 md:px-20 text-slate-800 bg-indigo-50/60">
+		<Navigation />
+		<main class="pb-20">
+			<slot />
+		</main>
+		<!-- <footer class="py-20 bg-slate-200 md:-mx-12 md:px-12"> -->
+		<!-- 	<Navigation /> -->
+		<!-- </footer> -->
+	</body>
+</html>

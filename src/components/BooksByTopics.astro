@@ -1,0 +1,31 @@
+---
+import List from "./ListTitleBooks.astro";
+import TopicItem from "./TopicItem.astro";
+import Tags from "./Tags.astro";
+
+const allData = await Astro.glob("../pages/books/*.md");
+
+const tags = [
+  ...new Set(allData.map((post) => post.frontmatter.topics).flat()),
+];
+---
+
+<List title="Explore Books by Topics">
+  <TopicItem title="Ruby" link="ruby" img="ruby" />
+  <TopicItem
+    title="Ruby on Rails 7"
+    link="ruby-on-rails-7"
+    img="ruby-on-rails"
+  />
+  <TopicItem title="API" link="API" img="api" />
+  <TopicItem title="Performance" link="perfomance" img="perfomance" />
+  <TopicItem
+    title="Design Patterns"
+    link="design-patterns"
+    img="design-patterns"
+  />
+  <TopicItem title="Testing" link="testing" img="testing" />
+  <div slot="nogrid">
+    <Tags tags={tags} path="books" />
+  </div>
+</List>

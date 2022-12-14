@@ -1,0 +1,120 @@
+---
+import Layout from "./../../layouts/BaseLayout.astro";
+
+import List from "../../components/ListTitleBooks.astro";
+import Title from "../../components/Title.astro";
+import Card from "../../components/CardBook.astro";
+import Tags from "../../components/Tags.astro";
+import TopicItem from "../../components/TopicItem.astro";
+import FeaturedBook from "../../components/FeaturedBook.astro";
+import BooksByTopics from "../../components/BooksByTopics.astro";
+
+const allData = await Astro.glob("./*.md");
+
+const FeaturedBookData = allData.filter((post) =>
+  post.frontmatter.title.includes("The Rails and Hotwire Codex")
+);
+
+const tags = [
+  ...new Set(allData.map((post) => post.frontmatter.topics).flat()),
+];
+
+const fewBooks = allData.splice(0, 12);
+
+const FilteredPostsHotwire = allData.filter((post) =>
+  post.frontmatter.topics.includes("hotwire")
+);
+
+const FilteredBookFree = allData
+  .filter((post) => post.frontmatter.free)
+  .slice(0, 6);
+---
+
+<Layout
+  title="Books about Ruby and Ruby on Rails"
+  pageTitle="Ruby & Ruby on Rails"
+  seoDescription="The largest collection of books about Ruby & Ruby on Rails. Find books that will help you learn new versions of Ruby 3, Ruby on Rails 7, Hotwire, TurboFrame, and become a better programmer in general"
+  seoKeywords="book, ruby, ruby 3, ruby on rails 7, ruby on rails 6, hotwire, turbo frame, stimulus, vue with rails, react with rails, tailwind with rails, learn ruby, learn ruby on rails"
+>
+  <Title category="Books" />
+
+  <List title="Free Books For Learning Ruby & Rails" link="free">
+    {
+      FilteredBookFree.map((i) => (
+        <Card
+          title={i.frontmatter.title}
+          path={i.frontmatter.path}
+          authors={i.frontmatter.authors}
+          cover={i.frontmatter.cover}
+          url={i.url}
+          free={i.frontmatter.free}
+        />
+      ))
+    }
+  </List>
+
+  <List title="Books about Hotwire">
+    {
+      FilteredPostsHotwire.map((i) => (
+        <Card
+          title={i.frontmatter.title}
+          path={i.frontmatter.path}
+          authors={i.frontmatter.authors}
+          cover={i.frontmatter.cover}
+          url={i.url}
+          free={i.frontmatter.free}
+        />
+      ))
+    }
+  </List>
+
+  {
+    FeaturedBookData.map((i) => (
+      <FeaturedBook
+        title={i.frontmatter.title}
+        description={i.frontmatter.description}
+        authors={i.frontmatter.authors}
+        cover={i.frontmatter.cover}
+        link={i.url}
+      />
+    ))
+  }
+
+  <BooksByTopics />
+
+  <List title="Books" link="all">
+    {
+      fewBooks.map((i) => (
+        <Card
+          title={i.frontmatter.title}
+          path={i.frontmatter.path}
+          authors={i.frontmatter.authors}
+          cover={i.frontmatter.cover}
+          url={i.url}
+          free={i.frontmatter.free}
+        />
+      ))
+    }
+  </List>
+
+  <section class="text-4xl mb-12 leading-normal py-20">
+    <p class="mb-6">
+      A comprehensive collection of books about Ruby and Ruby on Rails. These
+      books are essential for any developer looking to master these powerful
+      technologies. They provide clear explanations, practical examples, and
+      everything you need to become a proficient Ruby and Ruby on Rails
+      developer.
+    </p>
+    <div>
+      Stay in touch. Follow me on <a
+        href="https://twitter.com/nleonid"
+        target="_blank"
+        class="text-sky-500 font-medium hover:text-red-500">Twitter</a
+      > or send me
+      <a
+        href="mailto:work.leonid@gmail.com"
+        class="text-blue-600 font-medium hover:text-red-500">an email</a
+      >
+    </div>
+  </section>
+</Layout>

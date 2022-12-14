@@ -1,0 +1,27 @@
+---
+const { url, title, cover, description, path } = Astro.props;
+---
+
+<a
+	href={url}
+	class="flex group lg:aspect-[2/1] relative flex-col hover:bg-violet-500/20 transition justify-start bg-[#1B162A]/70 text-white p-6 text-2xl leading-relaxed rounded-3xl"
+>
+	<div class="grow w-full flex justify-start flex-col">
+		<picture>
+			<source srcset={`/${path}/previews/${cover}.webp`} />
+			<img
+				src={`/${path}/previews/${cover}.jpg`}
+				alt={title}
+				class="rounded-lg aspect-video mb-8"
+			/>
+		</picture>
+		<div>
+			<h3 class="font-black tracking-tight text-2xl xl:text-3xl mb-2">
+				{title}
+			</h3>
+			<p class="text-lg xl:text-xl text-white/80">
+				{description}
+			</p>
+		</div>
+	</div>
+</a>

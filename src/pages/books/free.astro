@@ -1,0 +1,60 @@
+---
+import Layout from "./../../layouts/BaseLayout.astro";
+
+import List from "../../components/ListTitleBooks.astro";
+import Title from "../../components/Title.astro";
+import Card from "../../components/CardBook.astro";
+import Tags from "../../components/Tags.astro";
+import TopicItem from "../../components/TopicItem.astro";
+import FeaturedBook from "../../components/FeaturedBook.astro";
+import BooksByTopics from "../../components/BooksByTopics.astro";
+
+const allData = await Astro.glob("./*.md");
+
+const tags = [
+  ...new Set(allData.map((post) => post.frontmatter.topics).flat()),
+];
+
+const FeaturedBookData = allData.filter((post) =>
+  post.frontmatter.title.includes("Ruby Is For Fun")
+);
+const FilteredBookFree = allData.filter((post) => post.frontmatter.free);
+---
+
+<Layout
+  title="Free Books about Ruby and Ruby on Rails"
+  pageTitle="Free Ruby & Ruby on Rails"
+  seoDescription="The largest collection of books about Ruby & Ruby on Rails. Find books that will help you learn new versions of Ruby 3, Ruby on Rails 7, Hotwire, TurboFrame, and become a better programmer in general"
+  seoKeywords="book, ruby, ruby 3, ruby on rails 7, ruby on rails 6, hotwire, turbo frame, stimulus, vue with rails, react with rails, tailwind with rails, learn ruby, learn ruby on rails"
+>
+  <Title subtitle="Free Books" />
+
+  {
+    FeaturedBookData.map((i) => (
+      <FeaturedBook
+        title={i.frontmatter.title}
+        description={i.frontmatter.description}
+        authors={i.frontmatter.authors}
+        cover={i.frontmatter.cover}
+        link={i.url}
+      />
+    ))
+  }
+
+  <List title="All free books">
+    {
+      FilteredBookFree.map((i) => (
+        <Card
+          title={i.frontmatter.title}
+          path={i.frontmatter.path}
+          authors={i.frontmatter.authors}
+          cover={i.frontmatter.cover}
+          url={i.url}
+          free={i.frontmatter.free}
+        />
+      ))
+    }
+  </List>
+
+  <BooksByTopics />
+</Layout>

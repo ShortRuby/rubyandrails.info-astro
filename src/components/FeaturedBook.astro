@@ -1,0 +1,37 @@
+---
+const { title, description, link, cover } = Astro.props;
+---
+
+<section
+  class="mt-44 bg-indigo-100/80 border border-indigo-100/80 items-center rounded-md gap-10 lg:gap-20 mb-20 flex flex-col-reverse lg:flex-row justify-between p-10 lg:p-20"
+>
+  <div class="max-w-4xl">
+    <a href={link} class="hover:text-red-500 transition">
+      <h2 class="text-5xl mb-4">{title}</h2>
+    </a>
+    <p class="text-4xl mb-8 text-slate-500">
+      {description}
+    </p>
+    <a
+      href={link}
+      class="inline-block rounded-md hover:bg-red-500 transition text-2xl px-8 py-4 bg-slate-800 text-white"
+      >Details</a
+    >
+  </div>
+
+  <div
+    class="shrink-0 w-fill sm:w-1/4 -mt-32 rotate-3 relative overflow-hidden mb-2 shadow-xl hover:shadow-2xl rounded-sm transition duration-300"
+  >
+    <div
+      class="rounded-full group-hover:opacity-70 duration-300 opacity-0 transition absolute blur-3xl h-40 w-40 bg-gradient-to-t from-white to-white/20"
+    >
+    </div>
+    <img
+      src="/books/overlay.png"
+      alt=""
+      srcset="/books/overlay@2x.png 2x"
+      class="absolute mix-blend-multiply"
+    />
+    <img src=`/books/${cover}.jpg` alt="" class="object-cover" />
+  </div>
+</section>

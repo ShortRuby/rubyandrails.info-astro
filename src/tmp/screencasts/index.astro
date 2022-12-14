@@ -1,0 +1,25 @@
+---
+import Layout from "./../../layouts/PodcastsLayout.astro";
+import Card from "../../components/CardScreencast.astro";
+
+const allData = await Astro.glob("./*.md");
+---
+
+<Layout
+  title="Podcasts about Ruby & Ruby On Rails"
+  pageTitle="Ruby & Ruby on Rails"
+  seoDescription="AI Tools can help you with marketing, advertising, search, and more. Limitations? There are none!"
+  seoKeywords="ai tools, ai search, ai marketing, ai translation, ai shopify"
+>
+  {
+    allData.map((i) => (
+      <Card
+        title={i.frontmatter.title}
+        path={i.frontmatter.path}
+        authors={i.frontmatter.authors}
+        url={i.url}
+        description={i.frontmatter.description}
+      />
+    ))
+  }
+</Layout>

@@ -1,0 +1,16 @@
+---
+const { link } = Astro.props;
+---
+
+<a
+  href=`/${link}`
+  class="group hover:text-red-400 uppercase tracking-wide font-medium transition inline-flex flex-col gap-1 text-xs text-slate-600 items-center"
+>
+  <img
+    src=`/icons/ic_${link}.png`
+    alt=""
+    srcset=`/icons/ic_${link}@2x.png`
+    class="w-10 group-hover:-translate-y-2 transition duration-300"
+  />
+  {link}</a
+>

@@ -1,0 +1,69 @@
+---
+import Layout from "./../../layouts/BaseLayout.astro";
+import Title from "../../components/Title.astro";
+import Card from "../../components/CardBook.astro";
+import Tags from "../../components/Tags.astro";
+import List from "../../components/ListTitleBooks.astro";
+import TopicItem from "../../components/TopicItem.astro";
+
+export async function getStaticPaths() {
+  const allData = await Astro.glob("./*.md");
+
+  const uniqueTags = [
+    ...new Set(allData.map((post) => post.frontmatter.topics).flat()),
+  ];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allData.filter((post) =>
+      post.frontmatter.topics.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const allData = await Astro.glob("./*.md");
+const tags = [
+  ...new Set(allData.map((post) => post.frontmatter.topics).flat()),
+];
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout
+  title={`AI Tools: ${tag}`}
+  pageTitle={` ${tag}`}
+  seoDescription="AI Tools can help you with marketing, advertising, search, and more. Limitations? There are none!"
+  seoKeywords={`ai tools, ${tag}`}
+>
+  <Title category="Books" subtitle={`${tag}`} />
+
+  <List>
+    {
+      posts.map((i) => (
+        <Card
+          title={i.frontmatter.title}
+          path={i.frontmatter.path}
+          cover={i.frontmatter.cover}
+          authors={i.frontmatter.authors}
+          url={i.url}
+          description={i.frontmatter.description}
+        />
+      ))
+    }
+  </List>
+
+  <List title="Explore Books by Topics">
+    <TopicItem title="Ruby" link="#" img="ruby" />
+    <TopicItem title="Ruby on Rails 7" link="#" img="ruby-on-rails" />
+    <TopicItem title="API" link="#" img="api" />
+    <TopicItem title="Performance" link="#" img="perfomance" />
+    <TopicItem title="Design Patterns" link="#" img="design-patterns" />
+    <TopicItem title="Testing" link="#" img="testing" />
+    <div slot="nogrid">
+      <Tags tags={tags} path="books" />
+    </div>
+  </List>
+</Layout>

@@ -1,0 +1,22 @@
+---
+import Layout from "./BaseLayout.astro";
+
+const { title, pageTitle, seoDescription, seoKeywords } = Astro.props;
+---
+
+<Layout title={title} seoDescription={seoDescription} seoKeywords={seoKeywords}>
+  <div class="py-10">
+    <h1 class="font-black text-4xl text-white capitalize lg:text-6xl">
+      <span class="text-purple-300">AI Tools:</span>
+      {pageTitle}
+    </h1>
+  </div>
+  <div class="flex flex-col lg:flex-row gap-6 xl:gap-16 text-white">
+    <div class="lg:w-1/4">
+      <slot name="aside" />
+    </div>
+    <div class="lg:w-3/4 place-items-stretch grid md:grid-cols-2 gap-8">
+      <slot />
+    </div>
+  </div>
+</Layout>

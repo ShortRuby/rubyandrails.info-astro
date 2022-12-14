@@ -1,0 +1,10 @@
+---
+import Tag from "./Tag.astro";
+const { tags, path } = Astro.props;
+---
+
+<!-- <details class="mb-8"> --><!--   <summary --><!--     class="mb-4 cursor-pointer bg-slate-200 p-4 rounded-lg hover:bg-slate-100 transition" --><!--     >Choose a topic to explore</summary --><!--   > --><!--   <div class="flex gap-1 text-slate-800 mb-8 flex-wrap"> --><!--     <Tag tag="All Topics" path={`/${path}`} /> --><!--     {tags.map((tag) => <Tag tag={tag} path={`/${path}/${tag}`} />)} --><!--   </div> --><!-- </details> -->
+<div class="flex gap-1 text-slate-800 mb-8 flex-wrap">
+  <Tag tag="All Topics" path={`/${path}`} />
+  {tags.map((tag) => <Tag tag={tag} path={`/${path}/${tag}`} />)}
+</div>
