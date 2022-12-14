@@ -13,10 +13,8 @@ const { title, seoDescription, seoKeywords } = Astro.props;
 		<meta name="description" content={seoDescription} />
 		<meta name="keywords" content={seoKeywords} />
 		<title>{title}</title>
-		<script async src="https://tally.so/widgets/embed.js"></script>
-		<script defer src="/va/script.js"></script>
 	</head>
-	<body class="text-xl px-5 md:px-20 text-slate-800 bg-indigo-50/60">
+	<body class="text-xl px-5 md:px-20 text-slate-800 bg-indigo-50/80">
 		<Navigation />
 		<main class="pb-20">
 			<slot />
