@@ -1,5 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/BaseLayout.astro";
+import FeaturedBook from "../components/FeaturedBook.astro";
 ---
 
 <Layout title="Curated collection">
@@ -9,6 +10,7 @@ import Layout from "../layouts/Layout.astro";
 				Curated collection of 200+ AI services that will make your life easier
 				and definitely surprise you
 			</h1>
+			<FeaturedBook book="The Rails and Hotwire Codex" />
 			<a
 				href="/text"
 				class="px-8 py-4 w-fit hover:bg-purple-600 transition bg-purple-500 text-white font-bold inline-block rounded-md text-2xl"

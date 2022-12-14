@@ -1,0 +1,54 @@
+---
+import CardBook from "./CardBook.astro";
+
+const allData = await Astro.glob("../pages/books/*.md");
+const { topic, all=false, title, link } = Astro.props;
+
+const FilteredBooks = allData.filter((post) =>
+  post.frontmatter.topics.includes(topic)
+);
+---
+<section class="mb-16 pb-4 ">
+
+{title ?
+link ?
+  <a href=`/books/${link}` class="hover:text-red-500">
+    <h2 class="text-4xl capitalize md:text-5xl pb-12 pt-20">{title}</h2>
+  </a>
+  :
+  <h2 class="text-4xl capitalize md:text-5xl pb-12 pt-20">{title}</h2>
+  :
+  <h2 class="text-4xl capitalize md:text-5xl pb-12">{title}</h2>
+}
+  <div
+    class="place-items-stretch mb-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 xl:gap-10"
+  >
+{
+all ?
+
+   FilteredBooks.map((book => 
+    <CardBook title={book.frontmatter.title} path={book.frontmatter.path}
+            authors={book.frontmatter.authors}
+            cover={book.frontmatter.cover}
+            url={book.url}
+            free={book.frontmatter.free}
+    } />
+  ))
+  :
+   FilteredBooks.splice(0, 6).map((book => 
+    <CardBook title={book.frontmatter.title} path={book.frontmatter.path}
+            authors={book.frontmatter.authors}
+            cover={book.frontmatter.cover}
+            url={book.url}
+            free={book.frontmatter.free}
+    } />
+  ))
+}
+
+  </div>
+  <slot name="nogrid"/>
+  { link && 
+  <a href=`/books/${link}` class="text-2xl text-blue-600 hover:text-red-600 transition"
+    >Explore all books</a>
+  }
+</section>

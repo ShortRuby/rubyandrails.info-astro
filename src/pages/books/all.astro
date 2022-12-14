@@ -2,11 +2,8 @@
 import Layout from "./../../layouts/BaseLayout.astro";
 
 import Title from "../../components/Title.astro";
-import Card from "../../components/CardBook.astro";
-import List from "../../components/ListTitleBooks.astro";
+import ListAllBooks from "../../components/ListAllBooks.astro";
 import BooksByTopics from "../../components/BooksByTopics.astro";
-
-const allData = await Astro.glob("./*.md");
 ---
 
 <Layout
@@ -16,22 +13,7 @@ const allData = await Astro.glob("./*.md");
   seoKeywords="ai tools, ai search, ai marketing, ai translation, ai shopify"
 >
   <Title category="All Books" />
+  <ListAllBooks all />
 
   <BooksByTopics />
-
-  <List title="Books">
-    {
-      allData.map((i) => (
-        <Card
-          title={i.frontmatter.title}
-          path={i.frontmatter.path}
-          authors={i.frontmatter.authors}
-          cover={i.frontmatter.cover}
-          free={i.frontmatter.free}
-          url={i.url}
-          description={i.frontmatter.description}
-        />
-      ))
-    }
-  </List>
 </Layout>
