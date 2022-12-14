@@ -1,0 +1,46 @@
+---
+import CardPodcast from "./CardPodcast.astro";
+const allData = await Astro.glob("../pages/podcasts/*.md");
+const { all=false, title, link } = Astro.props;
+---
+<section class="mb-16 ">
+
+{title ?
+link ?
+  <a href=`/podcasts` class="hover:text-red-500">
+    <h2 class="text-4xl capitalize md:text-5xl pb-12 pt-20">{title}</h2>
+  </a>
+  :
+  <h2 class="text-4xl capitalize md:text-5xl pb-12 pt-20">{title}</h2>
+  :
+  <h2 class="text-4xl capitalize md:text-5xl pb-12">{title}</h2>
+}
+  <div
+    class="mb-8 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 xl:gap-12"
+  >
+{
+all ?
+
+   allData.map((item => 
+    <CardPodcast 
+    title={item.frontmatter.title} 
+            authors={item.frontmatter.authors}
+            cover={item.frontmatter.cover}
+            url={item.url}
+    } />
+  ))
+  :
+   allData.splice(0, 4).map((item => 
+    <CardPodcast title={item.frontmatter.title} 
+            authors={item.frontmatter.authors}
+            cover={item.frontmatter.cover}
+            url={item.url}
+    } />
+  ))
+}
+  </div>
+  { link && 
+  <a href=`/podcasts` class="text-2xl capitalize text-blue-600 hover:text-red-600 transition"
+    >Explore all podcasts</a>
+  }
+</section>

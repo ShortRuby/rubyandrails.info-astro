@@ -4,6 +4,7 @@ import Tag from "../components/Tag.astro";
 import BookCoverEmpty from "../components/BookCoverEmpty.astro";
 import BookCoverImage from "../components/BookCoverImage.astro";
 import BackButton from "../components/BackButton.astro";
+import BooksByTopics from "../components/BooksByTopics.astro";
 
 const { frontmatter } = Astro.props;
 ---
@@ -16,7 +17,7 @@ const { frontmatter } = Astro.props;
 
 <BackButton title="Books" link="books"/>
 
-<div class="flex flex-col-reverse md:flex-row gap-8 md:gap-16 lg:gap-20">
+<div class="flex pb-20 border-b border-indigo-300/60 mb-40 flex-col-reverse md:flex-row gap-8 md:gap-16 lg:gap-20">
   <div class="md:w-2/3">
 
     <div class="border-b mb-32 pb-10 border-indigo-200/70">
@@ -47,6 +48,18 @@ const { frontmatter } = Astro.props;
           ))
         }
       </div>
+<div class="">
+{ frontmatter.buy_on_site &&
+      <a target="_blank" href={frontmatter.buy_on_site} class="w-auto mb-4 mt-8 items-center gap-4 bg-slate-900 text-white hover:bg-red-500 duration-200 transition rounded-md  justify-center text-center px-8  xl:px-20 py-4 lg:py-6 text-3xl font-medium inline-flex" >
+        Get Book
+      </a>
+}
+      { frontmatter.buy_on_amazon &&
+            <a target="_blank" href={frontmatter.buy_on_amazon} class="mb-8 sm:mb-20 items-center gap-4 bg-slate-900 text-white hover:bg-red-500 duration-200 transition rounded-md  justify-center text-center px-8 w-auto xl:px-20 py-4 lg:py-6 text-3xl font-medium inline-flex" >
+            Buy on Amazon
+      </a>
+}
+</div>
     </div>
 
     <div class="prose prose-h2:text-4xl prose-h2:font-medium prose-2xl prose-slate ">
@@ -63,19 +76,8 @@ const { frontmatter } = Astro.props;
       <BookCoverEmpty title={frontmatter.title} authors={frontmatter.authors} free={frontmatter.free} url="" onbookpage={true} /> }
 </div>
 
-<div>
-{ frontmatter.buy_on_site &&
-      <a target="_blank" href={frontmatter.buy_on_site} class="mb-4 mt-8 items-center gap-4 bg-slate-900 text-white hover:bg-red-500 duration-200 transition rounded-md  justify-center text-center px-8 w-full xl:px-20 py-4 lg:py-6 text-3xl font-medium inline-flex" >
-        Get Book
-      </a>
-}
-      { frontmatter.buy_on_amazon &&
-            <a target="_blank" href={frontmatter.buy_on_amazon} class="mb-8 sm:mb-20 items-center gap-4 bg-slate-900 text-white hover:bg-red-500 duration-200 transition rounded-md  justify-center text-center px-8 w-full xl:px-20 py-4 lg:py-6 text-3xl font-medium inline-flex" >
-            Buy on Amazon
-      </a>
-}
-</div>
     </div>
   </div>
 </div>
+<BooksByTopics />
 </Layout>
