@@ -2,6 +2,17 @@
 const { type, title } = Astro.props;
 ---
 
-<h1 class="font-medium mb-8 max-w-4xl text-4xl sm:text-5xl lg:text-7xl">
-  {title}
-</h1>
+{
+  type == "h1" && (
+    <h1 class="font-medium mb-8 text-4xl sm:text-5xl lg:text-7xl">
+      {title} <slot />
+    </h1>
+  )
+}
+{
+  type == "h2" && (
+    <h2 class="font-medium mb-8 text-4xl sm:text-4xl lg:text-5xl">
+      {title} <slot />
+    </h2>
+  )
+}

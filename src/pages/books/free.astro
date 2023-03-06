@@ -9,14 +9,14 @@ import BooksByTopics from "../../components/BooksByTopics.astro";
 
 <Layout
   title="Free Books about Ruby and Ruby on Rails"
-  pageTitle="Free Ruby & Ruby on Rails"
   seoDescription="The largest collection of books about Ruby & Ruby on Rails. Find books that will help you learn new versions of Ruby 3, Ruby on Rails 7, Hotwire, TurboFrame, and become a better programmer in general"
   seoKeywords="book, ruby, ruby 3, ruby on rails 7, ruby on rails 6, hotwire, turbo frame, stimulus, vue with rails, react with rails, tailwind with rails, learn ruby, learn ruby on rails"
 >
-  <Title subtitle="Free Books" />
+  <Title title="Free Books" backButton="All Books /" />
 
   <FeaturedBook book="Ruby Is For Fun" />
 
-  <ListFreeBooks all="true" />
+  <ListFreeBooks all />
+
   <BooksByTopics />
 </Layout>

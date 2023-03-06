@@ -1,60 +1,43 @@
 ---
 import CardBook from "./CardBook.astro";
+import GridBooks from "./GridBooks.astro";
+import Link from "./Link.astro";
+import Title from "./Title.astro";
 
 const allData = await Astro.glob("../pages/books/*.md");
+const AllBooks = allData.filter((post) => post.frontmatter.free);
 
-const {all = false} = Astro.props
-
-const FilteredBooks = allData.filter((post) =>
-  post.frontmatter.free).slice(0, 6)
-
-const AllBooks = allData.filter((post) =>
-  post.frontmatter.free)
+const { all = false } = Astro.props;
 ---
-{
-all ?
 
-<section class="mb-16 pb-4 ">
+<section class="mb-16 pb-4">
+  <Title title="Free Books For Learning Ruby & Rails" type="h2" />
 
-  <h2 class="text-4xl capitalize md:text-5xl pb-12 pt-20">Free Books For Learning Ruby & Rails</h2>
+  <GridBooks>
+    {
+      all
+        ? AllBooks.map((book) => (
+            <CardBook
+              title={book.frontmatter.title}
+              path={book.frontmatter.path}
+              authors={book.frontmatter.authors}
+              cover={book.frontmatter.cover}
+              url={book.url}
+              free={book.frontmatter.free}
+            />
+          ))
+        : AllBooks.slice(0, 6).map((book) => (
+            <CardBook
+              title={book.frontmatter.title}
+              path={book.frontmatter.path}
+              authors={book.frontmatter.authors}
+              cover={book.frontmatter.cover}
+              url={book.url}
+              free={book.frontmatter.free}
+            />
+          ))
+    }
+  </GridBooks>
 
-  <div
-    class="place-items-stretch mb-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 xl:gap-10"
-  >
-
-  { AllBooks.map((book => 
-    <CardBook title={book.frontmatter.title} path={book.frontmatter.path}
-            authors={book.frontmatter.authors}
-            cover={book.frontmatter.cover}
-            url={book.url}
-            free={book.frontmatter.free}
-    } />
-  ))}
-
-  </div>
+  {!all && <Link link="/books/free" title="Explore all free books" />}
 </section>
-:
-<section class="mb-16 pb-4 ">
-
-  <a href="/books/free" class="hover:text-red-500">
-    <h2 class="text-4xl capitalize md:text-5xl pb-12 pt-20">Free Books For Learning Ruby & Rails</h2>
-  </a>
-
-  <div
-    class="place-items-stretch mb-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 xl:gap-10"
-  >
-
-  { FilteredBooks.map((book => 
-    <CardBook title={book.frontmatter.title} path={book.frontmatter.path}
-            authors={book.frontmatter.authors}
-            cover={book.frontmatter.cover}
-            url={book.url}
-            free={book.frontmatter.free}
-    } />
-  ))}
-
-  </div>
-  <a href="/books/free" class="text-2xl text-blue-600 hover:text-red-600 transition"
-    >Explore all free books</a>
-</section>
-}

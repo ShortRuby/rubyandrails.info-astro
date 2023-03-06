@@ -1,7 +1,7 @@
 ---
 import Layout from "./../../layouts/BaseLayout.astro";
 
-import Title from "../../components/PageTitle.astro";
+import PageTitle from "../../components/PageTitle.astro";
 import FeaturedBook from "../../components/FeaturedBook.astro";
 import ListFreeBooks from "../../components/ListFreeBooks.astro";
 import ListBooksByTopic from "../../components/ListBooksByTopic.astro";
@@ -13,7 +13,7 @@ import ListAllBooks from "../../components/ListAllBooks.astro";
   seoDescription="The largest collection of books about Ruby & Ruby on Rails. Find books that will help you learn new versions of Ruby 3, Ruby on Rails 7, Hotwire, TurboFrame, and become a better programmer in general"
   seoKeywords="book, ruby, ruby 3, ruby on rails 7, ruby on rails 6, hotwire, turbo frame, stimulus, vue with rails, react with rails, tailwind with rails, learn ruby, learn ruby on rails"
 >
-  <Title category="Books" />
+  <PageTitle title="Books about Ruby and Ruby on Rails" />
 
   <ListFreeBooks />
 
@@ -22,14 +22,16 @@ import ListAllBooks from "../../components/ListAllBooks.astro";
   <ListBooksByTopic
     topic="hotwire"
     title="Books about Hotwire"
-    link="hotwire"
+    link="/books/hotwire"
   />
+
   <ListBooksByTopic
     topic="testing"
     title="Books about Testing"
-    link="testing"
+    link="/books/testing"
   />
-  <ListAllBooks title="All Books" link />
+
+  <ListAllBooks title="All Books" />
 
   <section class="text-4xl mb-12 leading-normal py-20">
     <p class="mb-6">

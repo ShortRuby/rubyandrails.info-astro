@@ -1,7 +1,8 @@
 ---
-import List from "./ListTitleBooks.astro";
 import TopicItem from "./TopicItem.astro";
 import Tags from "./Tags.astro";
+import Title from "./Title.astro";
+import GridBooks from "./GridBooks.astro";
 
 const allData = await Astro.glob("../pages/books/*.md");
 
@@ -11,26 +12,23 @@ const tags = [
 ---
 
 <section>
-  <h2 class="text-4xl capitalize md:text-5xl pb-12 pt-20">
-    Explore Books by Topics
-  </h2>
-  <div
-    class="place-items-stretch mb-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 xl:gap-10"
-  >
+  <Title title="Explore Books by Topics" type="h2" />
+  <GridBooks>
     <TopicItem title="Ruby" link="ruby" img="ruby" />
     <TopicItem
       title="Ruby on Rails 7"
-      link="ruby-on-rails-7"
+      link="ruby on rails 7"
       img="ruby-on-rails"
     />
     <TopicItem title="API" link="API" img="api" />
     <TopicItem title="Performance" link="perfomance" img="perfomance" />
     <TopicItem
       title="Design Patterns"
-      link="design-patterns"
+      link="design patterns"
       img="design-patterns"
     />
     <TopicItem title="Testing" link="testing" img="testing" />
-  </div>
+  </GridBooks>
+
   <Tags tags={tags} path="books" />
 </section>

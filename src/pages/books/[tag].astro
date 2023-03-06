@@ -4,6 +4,7 @@ import Layout from "./../../layouts/BaseLayout.astro";
 import Title from "../../components/PageTitle.astro";
 import BooksByTopics from "../../components/BooksByTopics.astro";
 import ListBooksByTopic from "../../components/ListBooksByTopic.astro";
+import Link from "../../components/Link.astro";
 
 export async function getStaticPaths() {
   const allData = await Astro.glob("./*.md");
@@ -31,8 +32,11 @@ const { tag } = Astro.params;
   seoDescription="AI Tools can help you with marketing, advertising, search, and more. Limitations? There are none!"
   seoKeywords={`ai tools, ${tag}`}
 >
-  <Title category="Books" subtitle={`${tag}`} />
+  <Link title="All Books" link="/books" />
+
+  <Title title={`Books about ${tag}`} type="h1" />
 
   <ListBooksByTopic topic={tag} all />
+
   <BooksByTopics />
 </Layout>

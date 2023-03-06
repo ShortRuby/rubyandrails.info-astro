@@ -1,0 +1,21 @@
+---
+const { link, title, back, class: className } = Astro.props;
+---
+
+{
+  back ? (
+    <a
+      onclick="history.back()"
+      class=`${className} cursor-pointer text-red-500 capitalize hover:text-red-600 transition`
+    >
+      {title}
+    </a>
+  ) : (
+    <a
+      href={link}
+      class=`${className} text-2xl capitalize text-blue-600 hover:text-red-600 transition`
+    >
+      {title}
+    </a>
+  )
+}
